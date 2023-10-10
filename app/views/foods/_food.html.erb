@@ -1,27 +1,22 @@
-<div id="<%= dom_id food %>">
-  <p>
-    <strong>Name:</strong>
+<tr>
+  <td>
     <%= food.name %>
-  </p>
+  </td>
 
-  <p>
-    <strong>Measurement unit:</strong>
+  <td>
+    
     <%= food.measurement_unit %>
-  </p>
+  </td>
 
-  <p>
-    <strong>Price:</strong>
+  <td>
+   
     <%= food.price %>
-  </p>
+  </td>
 
-  <p>
-    <strong>Quantity:</strong>
-    <%= food.quantity %>
-  </p>
+  <td>
+  <% if can? :destroy, food %>
+    <%= button_to 'Delete', food_path(author_id: comment.author_id, post_id: comment.post_id, id: comment.id), method: :delete, data: { confirm: 'Are you sure you want to delete this comment?' }, class: 'log-out-button' %>
+  <% end %>
+  </td>
 
-  <p>
-    <strong>User:</strong>
-    <%= food.user_id %>
-  </p>
-
-</div>
+</tr>
