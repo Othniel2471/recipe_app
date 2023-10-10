@@ -10,16 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_09_192322) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_10_091533) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "foods", force: :cascade do |t|
+    t.string "name"
+    t.string "measurement_unit"
+    t.decimal "price"
+    t.decimal "quantity"
     t.bigint "user_id", null: false
-    t.string "name", null: false
-    t.integer "measurement_unit", null: false
-    t.decimal "price", default: "0.0", null: false
-    t.integer "quantity", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_foods_on_user_id"
@@ -36,12 +36,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_09_192322) do
   end
 
   create_table "recipes", force: :cascade do |t|
+    t.string "name"
+    t.string "preparation_time"
+    t.string "cooking_time"
+    t.boolean "public"
+    t.text "description"
     t.bigint "user_id", null: false
-    t.string "name", null: false
-    t.integer "preparation_time", default: 0, null: false
-    t.integer "cooking_time", default: 0, null: false
-    t.text "description", null: false
-    t.boolean "public", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_recipes_on_user_id"
