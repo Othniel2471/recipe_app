@@ -117,8 +117,15 @@ h4 {
   padding: 8px;
 }
 
-.btn {
-  background-color: red;
+.link {
+  text-decoration: none;
+  color: black;
+  font-weight: 600;
+}
+
+.link:hover {
+  color: gray;
+  font-size: large;
 }
 
 .container {
