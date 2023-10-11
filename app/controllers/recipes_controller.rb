@@ -15,6 +15,7 @@ class RecipesController < ApplicationController
   def show
     @recipe = set_recipe
     @recipe_foods = @recipe.food
+    @food = @recipe_foods.first
   end
 
   def new
@@ -40,10 +41,44 @@ class RecipesController < ApplicationController
 
   def destroy
     @recipe = Recipe.find(params[:id])
-    # @recipe_foods = @recipe.foods_recipes
-    # @recipe_foods.each(&:destroy)
     @recipe.destroy
     redirect_to recipes_path
+  end
+
+  # def add_ingredient
+  #   @recipe = set_recipe
+  #   @food = Food.find(params[:recipe][:food_id])
+  #   @recipe.food << @food
+  #   @recipe.quantity = params[:recipe][:quantity] # Set the quantity
+  #   @recipe.save # Save the recipe with the quantity
+  # end
+
+
+  def add_ingredient
+    @recipe = set_recipe
+    @food = Food.find(params[:recipe][:food_id])
+    @recipe.food << @food
+  end
+
+  # def add_ingredient
+  #   @recipe = set_recipe
+  #   @food = Food.find(params[:food_id])
+  #   @recipe.food << @food
+  # end
+
+  # def new_ingredient
+  #   @recipe = set_recipe
+  #   @food = Food.new
+  # end
+
+  def new_ingredient
+    @recipe = set_recipe
+    @food = Food.new
+  end
+
+  def destroy_ingredient
+    @food = Food.find(params[:food_id])
+    @recipe.food.delete(@food)
   end
 
   private
@@ -53,6 +88,6 @@ class RecipesController < ApplicationController
   end
 
   def recipe_params
-    params.require(:recipe).permit(:name, :preparation_time, :cooking_time, :description, :public, :user_id)
+    params.require(:recipe).permit(:name, :preparation_time, :cooking_time, :description, :public, :user_id, :quantity)
   end
 end

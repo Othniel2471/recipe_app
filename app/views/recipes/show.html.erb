@@ -1,10 +1,54 @@
-<p style="color: green"><%= notice %></p>
+<div class="gen-form-container cont">
+  <h1 class="mg-b"><%= @recipe.name %></h1>
+  <div class="show-recipe mg-b">
+    <div class="details-food">
+      <p class="details-p">
+        <strong>Preparation time:</strong>
+        <span><%= @recipe.preparation_time %> <% if @recipe.preparation_time > 1 %>
+          hours
+          <% else %>
+          hour
+          <% end %></span>
+      </p>
+      <p class="details-p">
+        <strong>Cooking time:</strong>
+        <span><%= @recipe.cooking_time %> <% if @recipe.cooking_time > 1 %>
+          hours
+          <% else %>
+          hour
+          <% end %></span>
+      </p>
+      <p class="details-p">
+        <strong>Description:</strong>
+        <span><%= @recipe.description %></span>
+      </p>
+    </div>
+    <div class="toggle-btn">
+      <label for="publicToggle">Public</label>
+      <label class="switch">
+        <input type="checkbox" id="publicToggle" name="publicToggle" <% if @recipe.public == true %> checked <% end %>>
+        <span class="slider"></span>
+      </label>
+    </div>
+  </div>
+  <div class="action-btns">
+    <%= button_to 'Generate shopping list', {} ,class: 'view-btn' %>
+<%= link_to 'Add Ingredients', new_ingredient_recipe_path(@recipe), class: 'view-btn' %>
 
-<%= render @recipe %>
-
-<div>
-  <%= link_to "Edit this recipe", edit_recipe_path(@recipe) %> |
-  <%= link_to "Back to recipes", recipes_path %>
-
-  <%= button_to "Destroy this recipe", @recipe, method: :delete %>
+  </div>
+  <table class="food-table">
+    <thead>
+      <tr>
+        <th>Food</th>
+        <th>Quantity</th>
+        <th>Value</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+       <tbody>
+      
+    </tbody>
+    </tbody>
+  </table>
 </div>

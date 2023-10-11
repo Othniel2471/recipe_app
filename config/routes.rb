@@ -1,15 +1,23 @@
 Rails.application.routes.draw do
-
   devise_for :users
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-  root 'recipes#public'
+  
+  # Existing routes for foods and recipes
   resources :foods_recipes
   resources :foods
   resources :recipes do
     put 'toggle_public', on: :member
     resources :recipe_foods
   end
-  get 'general_shoping_list', to: 'general_shoping#index'
-  
 
+  # New routes
+  resources :recipes do
+    member do
+      get 'new_ingredient', to: 'recipes#new_ingredient'
+      post 'add_ingredient', to: 'recipes#add_ingredient'
+    end
+  end
+  get 'general_shoping_list', to: 'general_shoping#index'
+
+  # Root route
+  root 'recipes#public'
 end
