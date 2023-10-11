@@ -1,14 +1,28 @@
 <p style="color: green"><%= notice %></p>
-
-<h1>Foods</h1>
-
-<div id="foods">
-  <% @foods.each do |food| %>
-    <%= render food %>
-    <p>
-      <%= link_to "Show this food", food %>
-    </p>
-  <% end %>
-</div>
-
+<div class= 'container'>
+<div class='horizontal_flex_end '>
+<div class= 'custom_button'>
 <%= link_to "New food", new_food_path %>
+</div>
+</div>
+<table class="grid-table" id="foods">
+        <thead>
+            <tr>
+                <th><strong>Food</strong></th>
+                <th><strong>Measurement unit</strong></th>
+                <th> <strong>Price</strong></th>
+                <th> <strong>Action</strong></th>
+            </tr>
+        </thead>
+        <tbody>
+
+  <% @foods.each do |food| %>
+    <%= link_to food_path(food) do %>
+    <%= render food %>
+   <%end%>
+     
+  
+  <% end %>
+  </tbody>
+  </table>
+</div>
