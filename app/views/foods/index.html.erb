@@ -2,7 +2,11 @@
 <div class= 'container'>
 <div class='horizontal_flex_end '>
 <div class= 'custom_button'>
+<% if user_signed_in? %>
 <%= link_to "New food", new_food_path %>
+<%else%>
+<%= link_to "New food", new_user_session_path %>
+<%end%>
 </div>
 </div>
 <table class="grid-table" id="foods">
@@ -17,9 +21,9 @@
         <tbody>
 
   <% @foods.each do |food| %>
-    <%= link_to food_path(food) do %>
+    
     <%= render food %>
-   <%end%>
+   
      
   
   <% end %>
