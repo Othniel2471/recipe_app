@@ -10,5 +10,6 @@ Rails.application.routes.draw do
     resources :recipe_foods
   end
   get 'general_shoping_list', to: 'general_shoping#index'
+  
 
 end
