@@ -2,6 +2,8 @@
 
 <%= render @recipe %>
 
+<%= button_to 'Add ingredient', add_ingredient_recipe_path(id: @recipe.id, food_id: 1), method: :post %>
+
 <div>
   <%= link_to "Edit this recipe", edit_recipe_path(@recipe) %> |
   <%= link_to "Back to recipes", recipes_path %>

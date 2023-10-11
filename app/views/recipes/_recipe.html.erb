@@ -28,5 +28,9 @@
     <strong>User:</strong>
     <%= recipe.user_id %>
   </p>
+  <% @recipe.food.each do |food| %>
+    <%= food.name %> <%= button_to 'remove', destroy_ingredient_recipe_path(id: @recipe.id, food_id: food.id), method: :post %>
+    </br>
+  <% end %>
 
 </div>

@@ -13,7 +13,11 @@
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     <div class="log-out-cont">
+    <% if user_signed_in? %>
     <%= button_to "Sign out", destroy_user_session_path, method: :delete, class: "log-out-button" %>
+    <%else%>
+    <%= button_to "Sign in", new_user_session_path, method: :get, class: "log-out-button" %>
+    <%end%>
     </div>
     <%= yield %>
   </body>
