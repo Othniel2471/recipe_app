@@ -1,6 +1,6 @@
 class RecipesController < ApplicationController
-  before_action :set_recipe, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, except: [:public ]
+  before_action :set_recipe, only: %i[show edit update destroy]
+  before_action :authenticate_user!, except: [:public]
 
   def public
     @public_page = true
@@ -14,7 +14,7 @@ class RecipesController < ApplicationController
 
   def show
     @recipe = set_recipe
-    @recipe_foods = FoodRecipe.where(recipe_id: @recipe.id)
+    @recipe_foods = @recipe.food
   end
 
   def new
@@ -34,7 +34,7 @@ class RecipesController < ApplicationController
     @recipe = Recipe.find(params[:id])
     @recipe.update(public: params[:recipe][:public])
     respond_to do |format|
-      format.json {render json: {success: true}}
+      format.json { render json: { success: true } }
     end
   end
 
