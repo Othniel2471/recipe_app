@@ -14,8 +14,7 @@ class RecipesController < ApplicationController
 
   def show
     @recipe = set_recipe
-    @recipe_foods = @recipe.food_recipes
-    @food = @recipe_foods.first
+    @food_recipes = @recipe.food_recipes
   end
 
   def new
