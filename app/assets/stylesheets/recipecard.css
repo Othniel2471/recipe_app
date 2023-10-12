@@ -1,0 +1,64 @@
+.cont {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.recipe-card {
+  width: 50%;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 30px;
+  padding: 1rem;
+}
+
+.recipe-subclass {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.name-del {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  text-align: left;
+}
+
+.name-del button {
+  transform: translateY(3rem);
+}
+
+.align-right {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.view-link {
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* button for view link */
+.view-btn {
+  text-transform: uppercase;
+  background: transparent;
+  color: var(--clr-black);
+  padding: 0.375rem 0.75rem;
+  letter-spacing: var(--spacing);
+  display: inline-block;
+  transition: var(--transition);
+  border: 2px solid var(--clr-black);
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  border-radius: var(--radius);
+}
+
+.view-btn:hover {
+  color: var(--clr-white);
+  background: var(--clr-black);
+}

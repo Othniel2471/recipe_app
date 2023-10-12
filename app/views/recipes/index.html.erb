@@ -1,14 +1,29 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Recipes</h1>
-
-<div id="recipes">
-  <% @recipes.each do |recipe| %>
-    <%= render recipe %>
-    <p>
-      <%= link_to "Show this recipe", recipe %>
-    </p>
-  <% end %>
+<div class="cont">
+  <div class="row justify-content-center">
+  <div class="col-lg-4 col-10 d-flex ">
+    <% if @public_page %>
+      <h1 class="text-success">Public Recipes</h1>
+    <% else %> 
+      <h1 class="text-success">My Recipes</h1>
+    <% end %>
+  </div>
+  
 </div>
 
-<%= link_to "New recipe", new_recipe_path %>
+
+<div id="recipes" class="">
+  <% if @recipes.present? %>
+  <% @recipes.each do |recipe| %>
+  <div class="">
+       <%= render partial: 'shared/recipe_card', locals: { recipe: recipe } %>
+  </div>
+  <% end %>
+  <% else %>
+   <h4 class="text-center p-5">you have no recipes</h4>
+  <% end %>
+       <%= link_to "Add new recipe", new_recipe_path, class: '' %>
+</div>
+</div>
+
