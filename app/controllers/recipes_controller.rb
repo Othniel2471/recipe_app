@@ -14,7 +14,7 @@ class RecipesController < ApplicationController
 
   def show
     @recipe = set_recipe
-    @recipe_foods = @recipe.food
+    @recipe_foods = @recipe.food_recipes
     @food = @recipe_foods.first
   end
 
@@ -54,11 +54,28 @@ class RecipesController < ApplicationController
   # end
 
 
+  #def add_ingredient
+   # @recipe = set_recipe
+  #  @food = Food.find(params[:recipe][:food_id])
+  #  @recipe.food << @food
+  #end
+
   def add_ingredient
-    @recipe = set_recipe
-    @food = Food.find(params[:recipe][:food_id])
-    @recipe.food << @food
+    @recipe = Recipe.find(params[:recipe_id])
+    recipe_food_params = recipe_ingredient_params
+
+    # Create a new RecipeFood record to associate the selected food with the recipe
+    @recipe_food = RecipeFood.new(recipe_food_params)
+
+    if @recipe_food.save
+      flash[:success] = 'Ingredient added successfully'
+      redirect_to @recipe
+    else
+      render 'add_ingredient'
+    end
   end
+
+ 
 
   # def add_ingredient
   #   @recipe = set_recipe
@@ -82,6 +99,10 @@ class RecipesController < ApplicationController
   end
 
   private
+
+  def recipe_ingredient_params
+    params.require(:recipe).permit(food_recipes_attributes: [:quantity, :food_id])
+  end
 
   def set_recipe
     @recipe = Recipe.find(params[:id])

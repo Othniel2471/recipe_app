@@ -2,11 +2,11 @@ Rails.application.routes.draw do
   devise_for :users
   
   # Existing routes for foods and recipes
-  resources :foods_recipes
+  resources :food_recipes
   resources :foods
   resources :recipes do
     put 'toggle_public', on: :member
-    resources :recipe_foods
+    resources :food_recipes
   end
 
   # New routes
