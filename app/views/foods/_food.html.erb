@@ -18,7 +18,7 @@
 
   <td>
   <% if can? :destroy, food %>
-  <%= button_to 'Delete', food, method: :delete, data: { confirm: 'Are you sure you want to delete this food?' }, class: 'log-out-button' %>
+  <%= button_to 'Delete', food, method: :delete, data: { confirm: 'Are you sure you want to delete this food?' }, class: 'danger-btn' %>
 <% end %>
 
   </td>

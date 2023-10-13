@@ -2,7 +2,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+
+  /* height: 100vh; */
 }
 
 .form-container {
@@ -16,9 +17,10 @@
   box-shadow: var(--light-shadow);
   padding-top: 2rem;
   padding-bottom: 2rem;
+  margin-top: 2rem;
 }
 
-form {
+.forms {
   display: grid;
   grid-template-rows: auto 1fr auto;
   gap: 2rem 1rem;
@@ -26,7 +28,8 @@ form {
   width: 20rem;
 }
 
-form input {
+.forms input,
+textarea {
   padding: 0.25rem;
   padding-left: 1rem;
   background: var(--clr-grey-10);
@@ -35,15 +38,19 @@ form input {
   font-size: 1rem;
   flex: 1 0 auto;
   color: var(--clr-grey-5);
+  margin-top: 2rem;
 }
 
-form input[type='email'],
-form input[type='password'],
-form input[type='text'] {
+.field input {
+  margin: 0;
+}
+
+.forms input[type='email'],
+.forms input[type='password'] {
   width: 20rem;
 }
 
-form input::placeholder {
+.forms input::placeholder {
   color: var(--clr-grey-5);
   text-transform: capitalize;
   letter-spacing: 2px;
@@ -58,8 +65,7 @@ form input::placeholder {
   padding: 0.25rem;
   text-transform: capitalize;
   letter-spacing: 2px;
-  border-top-right-radius: var(--radius);
-  border-bottom-right-radius: var(--radius);
+  border-radius: var(--radius);
   cursor: pointer;
   content: var(--clr-primary-5);
   transition: var(--transition);

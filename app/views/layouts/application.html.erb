@@ -8,6 +8,7 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "showrecipe", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "login", "data-turbo-track": "reload" %>
   </head>
 
   <body>
@@ -15,9 +16,7 @@
     <p class="alert"><%= alert %></p>
     <div class="log-out-cont">
     <% if user_signed_in? %>
-    <%= button_to "Sign out", destroy_user_session_path, method: :delete, class: "log-out-button" %>
-    <%else%>
-    <%= button_to "Sign in", new_user_session_path, method: :get, class: "log-out-button" %>
+     <%= render partial: 'shared/navbar' %>
     <%end%>
     </div>
     <%= yield %>
