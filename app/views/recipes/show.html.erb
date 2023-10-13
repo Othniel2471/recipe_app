@@ -31,11 +31,12 @@
       </label>
     </div>
   </div>
-  <div class="action-btns">
-    <%= button_to 'Generate shopping list', {} ,class: 'view-btn' %>
-<%= link_to 'Add Ingredients', new_recipe_food_recipe_path(recipe_id: @recipe.id), class: 'view-btn' %>
-
-  </div>
+  <% if user_signed_in? %>
+    <div class="action-btns">
+      <%= button_to 'Generate shopping list', {} ,class: 'view-btn' %>
+      <%= link_to 'Add Ingredients', new_food_recipe_path(recipe_id: @recipe.id), class: 'view-btn' %>
+    </div>
+  <% end %>
   <table class="food-table">
     <thead>
       <tr>
@@ -54,9 +55,9 @@
         <td>
           <%= food_recipe.quantity %>
         </td>
-        <td><%= food_recipe.food.value %></td> 
+        <td><%= food_recipe.value %></td> 
         <td>
-          <%= link_to 'Delete', recipe_food_recipe_path(@recipe, food_recipe), method: :delete, data: { confirm: 'Are you sure?' }, class: 'danger-btn' %>
+          <%= link_to 'Delete', food_recipe_path, method: :delete, data: { confirm: 'Are you sure?' }, class: 'danger-btn' %>
         </td>
       </tr>
     <% end %>

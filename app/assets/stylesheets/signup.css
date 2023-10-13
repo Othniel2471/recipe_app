@@ -17,6 +17,7 @@
   box-shadow: var(--light-shadow);
   padding-top: 2rem;
   padding-bottom: 2rem;
+  margin-top: 2rem;
 }
 
 .forms {
@@ -37,6 +38,7 @@ textarea {
   font-size: 1rem;
   flex: 1 0 auto;
   color: var(--clr-grey-5);
+  margin-top: 2rem;
 }
 
 .field input {
