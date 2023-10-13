@@ -19,7 +19,7 @@
   padding-bottom: 2rem;
 }
 
-form {
+.forms {
   display: grid;
   grid-template-rows: auto 1fr auto;
   gap: 2rem 1rem;
@@ -27,7 +27,7 @@ form {
   width: 20rem;
 }
 
-form input,
+.forms input,
 textarea {
   padding: 0.25rem;
   padding-left: 1rem;
@@ -43,12 +43,12 @@ textarea {
   margin: 0;
 }
 
-form input[type='email'],
-form input[type='password'] {
+.forms input[type='email'],
+.forms input[type='password'] {
   width: 20rem;
 }
 
-form input::placeholder {
+.forms input::placeholder {
   color: var(--clr-grey-5);
   text-transform: capitalize;
   letter-spacing: 2px;
