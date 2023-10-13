@@ -56,7 +56,7 @@
         </td>
         <td><%= food_recipe.food.value %></td> 
         <td>
-          <%= link_to 'Delete', recipe_food_recipe_path(@recipe, food_recipe), method: :delete, data: { confirm: 'Are you sure?' }, class: 'view-btn' %>
+          <%= link_to 'Delete', recipe_food_recipe_path(@recipe, food_recipe), method: :delete, data: { confirm: 'Are you sure?' }, class: 'danger-btn' %>
         </td>
       </tr>
     <% end %>

@@ -1,0 +1,9 @@
+.field input {
+  height: 35px;
+
+  /* margin: 20px; */
+}
+
+.check {
+  transform: translateY(12px);
+}

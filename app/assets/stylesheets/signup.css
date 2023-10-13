@@ -2,7 +2,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+
+  /* height: 100vh; */
 }
 
 .form-container {
@@ -26,7 +27,8 @@ form {
   width: 20rem;
 }
 
-form input {
+form input,
+textarea {
   padding: 0.25rem;
   padding-left: 1rem;
   background: var(--clr-grey-10);
@@ -37,9 +39,12 @@ form input {
   color: var(--clr-grey-5);
 }
 
+.field input {
+  margin: 0;
+}
+
 form input[type='email'],
-form input[type='password'],
-form input[type='text'] {
+form input[type='password'] {
   width: 20rem;
 }
 
@@ -58,8 +63,7 @@ form input::placeholder {
   padding: 0.25rem;
   text-transform: capitalize;
   letter-spacing: 2px;
-  border-top-right-radius: var(--radius);
-  border-bottom-right-radius: var(--radius);
+  border-radius: var(--radius);
   cursor: pointer;
   content: var(--clr-primary-5);
   transition: var(--transition);

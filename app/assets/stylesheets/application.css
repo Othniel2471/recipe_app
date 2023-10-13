@@ -155,9 +155,10 @@ h4 {
 }
 
 .field input {
-  width: 100%;
+  /* width: 100%; */
   height: 35px;
-  margin: 20px;
+
+  /* margin: 20px; */
 }
 
 .grid-table {
@@ -183,4 +184,19 @@ h4 {
 /* Add alternating row colors for better readability */
 .grid-table tbody tr:nth-child(even) {
   background-color: #f9f9f9;
+}
+
+.custom-select select {
+  background: var(--clr-grey-10);
+  border-radius: var(--radius);
+  border-color: transparent;
+  font-size: 1rem;
+  color: var(--clr-grey-5);
+  width: 100%; /* Adjust the width as needed */
+}
+
+.custom-select select::placeholder {
+  color: var(--clr-grey-5);
+  text-transform: capitalize;
+  letter-spacing: 2px;
 }

@@ -10,7 +10,7 @@
   text-align: left;
   display: flex;
   justify-content: space-between;
-  gap: 5;
+  gap: 5px;
   width: 70%;
 }
 
@@ -51,7 +51,7 @@
   transition: 0.4s;
 }
 
-.slider:before {
+.slider::before {
   position: absolute;
   content: '';
   height: 16px;
@@ -71,7 +71,7 @@ input:focus + .slider {
   box-shadow: 0 0 1px #2196f3;
 }
 
-input:checked + .slider:before {
+input:checked + .slider::before {
   transform: translateX(20px);
 }
 

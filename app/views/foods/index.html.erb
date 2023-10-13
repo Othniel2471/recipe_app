@@ -1,11 +1,11 @@
 <p style="color: green"><%= notice %></p>
 <div class= 'container'>
 <div class='horizontal_flex_end '>
-<div class= 'custom_button'>
+<div>
 <% if user_signed_in? %>
-<%= link_to "New food", new_food_path %>
+<%= link_to "New food", new_food_path, class: 'submit-btn' %>
 <%else%>
-<%= link_to "New food", new_user_session_path %>
+<%= link_to "New food", new_user_session_path, class: 'submit-btn' %>
 <%end%>
 </div>
 </div>
