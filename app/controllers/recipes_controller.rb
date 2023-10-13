@@ -4,8 +4,23 @@ class RecipesController < ApplicationController
 
   def public
     @public_page = true
-    @recipes = Recipe.where(public: true).order(created_at: :desc)
-    render :index
+    @recipes = Recipe.includes(%i[foods food_recipes user]).where(public: true).order('created_at DESC')
+    @public_recipe_data_list = []
+    p @recipes
+    @recipes.each do |recipe|
+      public_recipe_data = {}
+      public_recipe_data[:user] = recipe.user.name
+      public_recipe_data[:recipe] = recipe
+      public_recipe_data[:recipe_name] = recipe.name
+      public_recipe_data[:food_count] = recipe.foods.length
+      public_recipe_data[:total_price] = recipe.food_recipes.reduce(0) do |total_price, food_recipe|
+        total_price + (food_recipe.food.price * food_recipe.quantity)
+      end
+      p('recipe name', public_recipe_data[:recipe_name])
+      p('recipe name', public_recipe_data[:recipe].name)
+      @public_recipe_data_list << public_recipe_data
+    end
+
   end
 
   def index

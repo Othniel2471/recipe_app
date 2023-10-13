@@ -1,0 +1,23 @@
+<div id="<%= dom_id public_recipe_data[:recipe] %>">
+  <p>
+    <strong>Name:</strong>
+    <%= public_recipe_data[:recipe].name %>
+  </p>
+
+  <p>
+    <strong>by:</strong>
+    <%= public_recipe_data[:user] %>
+  </p>
+
+
+  <p>
+    <strong>total food items:</strong>
+    <%= public_recipe_data[:food_count] %>
+  </p>
+
+  <p>
+  <strong>Total price:</strong>
+  <%= public_recipe_data[:total_price] %>
+</p>
+
+</div>
