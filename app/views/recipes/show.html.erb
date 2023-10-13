@@ -46,15 +46,26 @@
       </tr>
     </thead>
     <tbody>
-       <tbody>
-       <% @recipe.foods.each do |food| %>
-    
-        <%= render 'foods/food' %>
-       
-         
-      
-      <% end %> 
-    </tbody>
+      <tbody>
+        <% if @food_recipes.present? %>
+    <% @food_recipes.each do |food_recipe| %>
+      <tr>
+        <td><%= food_recipe.food.name %></td>
+        <td>
+          <%= food_recipe.quantity %>
+        </td>
+        <td><%= food_recipe.food.value %></td> 
+        <td>
+          <%= link_to 'Delete', recipe_food_recipe_path(@recipe, food_recipe), method: :delete, data: { confirm: 'Are you sure?' }, class: 'view-btn' %>
+        </td>
+      </tr>
+    <% end %>
+  <% else %>
+    <tr>
+      <td colspan="4">No ingredients added yet</td>
+    </tr>
+  <% end %>
+      </tbody>
     </tbody>
   </table>
 </div>

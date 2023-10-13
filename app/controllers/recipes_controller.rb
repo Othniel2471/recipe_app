@@ -53,11 +53,11 @@ class RecipesController < ApplicationController
   # end
 
 
-  #def add_ingredient
-   # @recipe = set_recipe
+  # def add_ingredient
+  # @recipe = set_recipe
   #  @food = Food.find(params[:recipe][:food_id])
   #  @recipe.food << @food
-  #end
+  # end
 
   def add_ingredient
     @recipe = Recipe.find(params[:recipe_id])
@@ -74,7 +74,7 @@ class RecipesController < ApplicationController
     end
   end
 
- 
+
 
   # def add_ingredient
   #   @recipe = set_recipe
@@ -100,7 +100,7 @@ class RecipesController < ApplicationController
   private
 
   def recipe_ingredient_params
-    params.require(:recipe).permit(food_recipes_attributes: [:quantity, :food_id])
+    params.require(:recipe).permit(food_recipes_attributes: %i[quantity food_id])
   end
 
   def set_recipe
