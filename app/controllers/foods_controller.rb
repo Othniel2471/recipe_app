@@ -49,13 +49,11 @@ class FoodsController < ApplicationController
 
   # DELETE /foods/1 or /foods/1.json
   def destroy
-    begin
-      authorize! :destroy, @food
-      @food.destroy
-      redirect_to foods_url, notice: 'Food was successfully destroyed.'
-    rescue ActiveRecord::InvalidForeignKey
-      redirect_to foods_url, alert: 'This food item cannot be deleted because it is associated with other records.'
-    end
+    authorize! :destroy, @food
+    @food.destroy
+    redirect_to foods_url, notice: 'Food was successfully destroyed.'
+  rescue ActiveRecord::InvalidForeignKey
+    redirect_to foods_url, alert: 'This food item cannot be deleted because it is associated with other records.'
   end
 
   private
