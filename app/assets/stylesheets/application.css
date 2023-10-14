@@ -200,3 +200,7 @@ h4 {
   text-transform: capitalize;
   letter-spacing: 2px;
 }
+
+p {
+  text-transform: capitalize;
+}

@@ -42,7 +42,7 @@ class RecipesController < ApplicationController
   end
 
   def show
-    @recipe = set_recipe
+    @recipe = Recipe.includes(:food_recipes).find(params[:id])
     @food_recipes = @recipe.food_recipes
   end
 
@@ -70,15 +70,13 @@ class RecipesController < ApplicationController
           format.html { render :edit }
           format.json { render json: @recipe.errors, status: :unprocessable_entity }
         end
-      else
+      elsif @recipe.update(recipe_params)
         # Handle other attributes here
-        if @recipe.update(recipe_params)
-          format.html { redirect_to recipe_url(@recipe), notice: 'Recipe attributes were successfully updated.' }
-          format.json { render :show, status: :ok, location: @recipe }
-        else
-          format.html { render :edit }
-          format.json { render json: @recipe.errors, status: :unprocessable_entity }
-        end
+        format.html { redirect_to recipe_url(@recipe), notice: 'Recipe attributes were successfully updated.' }
+        format.json { render :show, status: :ok, location: @recipe }
+      else
+        format.html { render :edit }
+        format.json { render json: @recipe.errors, status: :unprocessable_entity }
       end
     end
   end
