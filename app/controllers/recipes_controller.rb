@@ -26,16 +26,16 @@ class RecipesController < ApplicationController
     @recipe_shoping_list_data[:food_count] = @recipe.foods.length
     p @recipe.food_recipes
     @recipe_shoping_list_data[:foods_data] = @recipe.food_recipes.map do |food_recipe|
-                                                    {
-                                                      name: food_recipe.food.name,
-                                                      quantity: food_recipe.quantity,
-                                                      price: food_recipe.food.price * food_recipe.quantity
-                                                   }
-                                                  end
+      {
+        name: food_recipe.food.name,
+        quantity: food_recipe.quantity,
+        price: food_recipe.food.price * food_recipe.quantity
+      }
+    end
     @recipe_shoping_list_data[:total_price] = @recipe.food_recipes.reduce(0) do |total_price, food_recipe|
       total_price + (food_recipe.food.price * food_recipe.quantity)
-    end  
-  end  
+    end
+  end
 
   def index
     @recipes = Recipe.where(user_id: current_user.id).order(created_at: :desc)
