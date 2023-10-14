@@ -33,7 +33,7 @@
   </div>
   <% if user_signed_in? %>
     <div class="action-btns">
-      <%= button_to 'Generate shopping list', {} ,class: 'view-btn' %>
+      <%= link_to 'Generate shopping list', shoping_list_recipe_path(@recipe) ,class: 'view-btn' %>
       <%= link_to 'Add Ingredients', new_food_recipe_path(recipe_id: @recipe.id), class: 'view-btn' %>
     </div>
   <% end %>

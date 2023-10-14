@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   resources :foods
   resources :recipes do
     put 'toggle_public', on: :member
+    member do
+      get 'shoping_list'
+    end
   end
   resources :food_recipes, only: [:new, :create, :destroy]
   root 'recipes#public'
