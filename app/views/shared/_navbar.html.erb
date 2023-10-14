@@ -24,11 +24,9 @@
             <li class="nav-item">
               <a class="nav-link " href="<%= new_food_path %>" >Add Food</a>
             </li>
-          <% if @recipe.present? %>
-            <li class="nav-item">
-              <%= link_to 'Shopping List', shoping_list_recipe_path(id: @recipe) %>
+            <li class="nav-item" >
+              <a class="nav-link"  href="" >Shopping List</a>
             </li>
-          <% end %>
         </ul>
         <!-- social media -->
         <ul class="social-icons">
