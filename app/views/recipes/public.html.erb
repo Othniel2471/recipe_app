@@ -1,4 +1,4 @@
-<div class='container vertical_flex '>
+<div class="cont">
 <p style="color: green"><%= notice %></p>
 
 <h1>Public Recipes Updated</h1>
@@ -13,13 +13,15 @@
 </div>
 <br>
 
-<% if user_signed_in? %>
-<%= link_to "New Recipe", new_recipe_path, class: 'submit-btn' %>
-<%else%>
-<%= link_to "New Recipe", new_user_session_path, class: 'submit-btn' %>
-<%end%> <br>
+<div class="contain-btn">
+    <% if user_signed_in? %>
+    <%= link_to "New Recipe", new_recipe_path, class: 'submit-btn' %>
+    <%else%>
+    <%= link_to "New Recipe", new_user_session_path, class: 'submit-btn' %>
+    <%end%> <br>
 
-<% unless user_signed_in? %>
-    <%= button_to "Sign in", new_user_session_path, method: :get, class: "danger-btn" %>
-<%end%>
+    <% unless user_signed_in? %>
+        <%= button_to "Sign in", new_user_session_path, method: :get, class: "danger-btn" %>
+    <%end%>
+</div>
 </div>

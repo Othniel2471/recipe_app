@@ -42,7 +42,7 @@ class RecipesController < ApplicationController
   end
 
   def show
-    @recipe = set_recipe
+    @recipe = Recipe.includes(:food_recipes).find(params[:id])
     @food_recipes = @recipe.food_recipes
   end
 
@@ -56,6 +56,28 @@ class RecipesController < ApplicationController
       redirect_to recipe_url(@recipe), notice: 'Recipe was successfully created.'
     else
       render :new, status: :unprocessable_entity
+    end
+  end
+
+  # PATCH/PUT /foods/1 or /foods/1.json
+  def update
+    respond_to do |format|
+      if params[:public].present?
+        if @recipe.update(public: params[:public])
+          format.html { redirect_to recipe_url(@recipe), notice: 'Public attribute was successfully updated.' }
+          format.json { render :show, status: :ok, location: @recipe }
+        else
+          format.html { render :edit }
+          format.json { render json: @recipe.errors, status: :unprocessable_entity }
+        end
+      elsif @recipe.update(recipe_params)
+        # Handle other attributes here
+        format.html { redirect_to recipe_url(@recipe), notice: 'Recipe attributes were successfully updated.' }
+        format.json { render :show, status: :ok, location: @recipe }
+      else
+        format.html { render :edit }
+        format.json { render json: @recipe.errors, status: :unprocessable_entity }
+      end
     end
   end
 
@@ -73,20 +95,6 @@ class RecipesController < ApplicationController
     redirect_to recipes_path
   end
 
-  # def add_ingredient
-  #   @recipe = set_recipe
-  #   @food = Food.find(params[:recipe][:food_id])
-  #   @recipe.food << @food
-  #   @recipe.quantity = params[:recipe][:quantity] # Set the quantity
-  #   @recipe.save # Save the recipe with the quantity
-  # end
-
-  # def add_ingredient
-  # @recipe = set_recipe
-  #  @food = Food.find(params[:recipe][:food_id])
-  #  @recipe.food << @food
-  # end
-
   def add_ingredient
     @recipe = Recipe.find(params[:recipe_id])
     recipe_food_params = recipe_ingredient_params
@@ -101,17 +109,6 @@ class RecipesController < ApplicationController
       render 'add_ingredient'
     end
   end
-
-  # def add_ingredient
-  #   @recipe = set_recipe
-  #   @food = Food.find(params[:food_id])
-  #   @recipe.food << @food
-  # end
-
-  # def new_ingredient
-  #   @recipe = set_recipe
-  #   @food = Food.new
-  # end
 
   def new_ingredient
     @recipe = set_recipe

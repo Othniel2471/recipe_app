@@ -76,3 +76,10 @@ textarea {
   background: var(--clr-primary-5);
   color: var(--clr-white);
 }
+
+.contain-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
