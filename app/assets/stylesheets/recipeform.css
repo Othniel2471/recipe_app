@@ -1,0 +1,17 @@
+.gen-form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+
+  /* height: 100vh; */
+}
+
+.times {
+  display: flex;
+  gap: 1rem;
+}
+
+.times input {
+  width: 3rem;
+}

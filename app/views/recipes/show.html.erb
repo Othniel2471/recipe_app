@@ -1,0 +1,76 @@
+<div class="gen-form-container cont">
+  <h1 class="mg-b"><%= @recipe.name %></h1>
+  <div class="show-recipe mg-b">
+    <div class="details-food">
+      <p class="details-p">
+        <strong>Preparation time:</strong>
+        <span><%= @recipe.preparation_time %> <% if @recipe.preparation_time > 1 %>
+          hours
+          <% else %>
+          hour
+          <% end %></span>
+      </p>
+      <p class="details-p">
+        <strong>Cooking time:</strong>
+        <span><%= @recipe.cooking_time %> <% if @recipe.cooking_time > 1 %>
+          hours
+          <% else %>
+          hour
+          <% end %></span>
+      </p>
+      <p class="details-p">
+        <strong>Description:</strong>
+        <span><%= @recipe.description %></span>
+      </p>
+    </div>
+    <div class="toggle-btn">
+    <% if current_user.present? && current_user.id == @recipe.user.id %>
+    <%= form_with model: @recipe, local: true, html: { id: 'recipe-form' } do |form| %>
+      <span>Public</span>
+      <label for="public-toggle" class="switch">
+        <%= form.check_box :public, { id: "public-toggle", onchange: "this.form.submit()" } %>
+        <div class="slider"></div>
+      </label>
+    <% end %>
+    <% end %>
+    </div>
+  </div>
+  <% if user_signed_in? %>
+    <div class="action-btns">
+      <%= link_to 'Generate shopping list', shoping_list_recipe_path(@recipe) ,class: 'view-btn' %>
+      <%= link_to 'Add Ingredients', new_food_recipe_path(recipe_id: @recipe.id), class: 'view-btn' %>
+    </div>
+  <% end %>
+  <table class="food-table">
+    <thead>
+      <tr>
+        <th>Food</th>
+        <th>Quantity</th>
+        <th>Value</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tbody>
+        <% if @food_recipes.present? %>
+    <% @food_recipes.each do |food_recipe| %>
+      <tr>
+        <td><%= food_recipe.food.name %></td>
+        <td>
+          <%= food_recipe.quantity %>
+        </td>
+        <td><%= food_recipe.value %></td> 
+        <td>
+          <%= link_to 'Delete', food_recipe_path, method: :delete, data: { confirm: 'Are you sure?' }, class: 'danger-btn' %>
+        </td>
+      </tr>
+    <% end %>
+  <% else %>
+    <tr>
+      <td colspan="4">No ingredients added yet</td>
+    </tr>
+  <% end %>
+      </tbody>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,47 @@
+    <nav>
+      <div class="nav-center">
+        <!-- nav header -->
+        <div class="nav-header">
+          <h1>Recipe</h1>
+          <button class="nav-toggle">
+            <i class="fas fa-bars"></i>
+          </button>
+        </div>
+        <!-- links -->
+        <ul class="links">
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/">Public Recipes</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="<%= recipes_path %>" >My Recipes</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="<%= foods_path %>" >My Foods</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link " href="<%= new_recipe_path %>" >Add Recipe</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link " href="<%= new_food_path %>" >Add Food</a>
+            </li>
+            <li class="nav-item" >
+              <a class="nav-link"  href="" >Shopping List</a>
+            </li>
+        </ul>
+        <!-- social media -->
+        <ul class="social-icons">
+          <li>
+            <% if user_signed_in? %>
+              <%= button_to "Sign out", destroy_user_session_path, method: :delete, class: "submit-btn" %>
+              <%else%>
+              <%= button_to "Sign in", new_user_session_path, method: :get, class: "danger-btn" %>
+            <%end%>
+          </li>
+          <li>
+            <a href="https://www.twitter.com">
+              <i class="fab fa-twitter"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>

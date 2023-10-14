@@ -1,0 +1,32 @@
+<p style="color: green"><%= notice %></p>
+<div class= 'container'>
+<div class='horizontal_flex_end '>
+<div>
+<% if user_signed_in? %>
+<%= link_to "New food", new_food_path, class: 'submit-btn' %>
+<%else%>
+<%= link_to "New food", new_user_session_path, class: 'submit-btn' %>
+<%end%>
+</div>
+</div>
+<table class="grid-table" id="foods">
+        <thead>
+            <tr>
+                <th><strong>Food</strong></th>
+                <th><strong>Measurement unit</strong></th>
+                <th> <strong>Price</strong></th>
+                <th> <strong>Action</strong></th>
+            </tr>
+        </thead>
+        <tbody>
+
+  <% @foods.each do |food| %>
+    
+    <%= render food %>
+   
+     
+  
+  <% end %>
+  </tbody>
+  </table>
+</div>

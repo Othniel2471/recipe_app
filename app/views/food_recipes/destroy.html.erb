@@ -1,0 +1,15 @@
+<div class="gen-form-container cont">
+  <h1 class="mg-b"><%= @recipe.name %></h1>
+  <!-- Add ingredient form -->
+  <%= form_for [@recipe, @food_recipe], url: recipe_food_recipes_path(@recipe), local: true, method: :delete do |form| %>
+  
+  <!-- Hidden input for recipe_id -->
+  <%= form.hidden_field :food_recipe_id, value: @food_recipes.id %>
+
+
+  <div class="form-actions">
+    <%= form.submit 'Delete', class: 'btn btn-primary' %>
+  </div>
+<% end %>
+
+</div>

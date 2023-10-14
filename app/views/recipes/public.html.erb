@@ -1,0 +1,27 @@
+<div class="cont">
+<p style="color: green"><%= notice %></p>
+
+<h1>Public Recipes Updated</h1>
+
+<div id="recipes">
+  <% @public_recipe_data_list.each do |public_recipe_data| %>
+    <%= render partial: 'public_recipe_card', locals: { public_recipe_data: public_recipe_data }   %>
+    <p>
+      <%= link_to "Show this recipe", public_recipe_data[:recipe] %>
+    </p>
+  <% end %>
+</div>
+<br>
+
+<div class="contain-btn">
+    <% if user_signed_in? %>
+    <%= link_to "New Recipe", new_recipe_path, class: 'submit-btn' %>
+    <%else%>
+    <%= link_to "New Recipe", new_user_session_path, class: 'submit-btn' %>
+    <%end%> <br>
+
+    <% unless user_signed_in? %>
+        <%= button_to "Sign in", new_user_session_path, method: :get, class: "danger-btn" %>
+    <%end%>
+</div>
+</div>
