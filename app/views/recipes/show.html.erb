@@ -24,11 +24,15 @@
       </p>
     </div>
     <div class="toggle-btn">
-      <label for="publicToggle">Public</label>
-      <label class="switch">
-        <input type="checkbox" id="publicToggle" name="publicToggle" <% if @recipe.public == true %> checked <% end %>>
-        <span class="slider"></span>
+    <% if current_user.present? && current_user.id == @recipe.user.id %>
+    <%= form_with model: @recipe, local: true, html: { id: 'recipe-form' } do |form| %>
+      <span>Public</span>
+      <label for="public-toggle" class="switch">
+        <%= form.check_box :public, { id: "public-toggle", onchange: "this.form.submit()" } %>
+        <div class="slider"></div>
       </label>
+    <% end %>
+    <% end %>
     </div>
   </div>
   <% if user_signed_in? %>

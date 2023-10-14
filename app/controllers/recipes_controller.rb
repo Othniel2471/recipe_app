@@ -59,6 +59,30 @@ class RecipesController < ApplicationController
     end
   end
 
+  # PATCH/PUT /foods/1 or /foods/1.json
+  def update
+    respond_to do |format|
+      if params[:public].present?
+        if @recipe.update(public: params[:public])
+          format.html { redirect_to recipe_url(@recipe), notice: 'Public attribute was successfully updated.' }
+          format.json { render :show, status: :ok, location: @recipe }
+        else
+          format.html { render :edit }
+          format.json { render json: @recipe.errors, status: :unprocessable_entity }
+        end
+      else
+        # Handle other attributes here
+        if @recipe.update(recipe_params)
+          format.html { redirect_to recipe_url(@recipe), notice: 'Recipe attributes were successfully updated.' }
+          format.json { render :show, status: :ok, location: @recipe }
+        else
+          format.html { render :edit }
+          format.json { render json: @recipe.errors, status: :unprocessable_entity }
+        end
+      end
+    end
+  end
+
   def toggle_public
     @recipe = Recipe.find(params[:id])
     @recipe.update(public: params[:recipe][:public])
@@ -72,20 +96,6 @@ class RecipesController < ApplicationController
     @recipe.destroy
     redirect_to recipes_path
   end
-
-  # def add_ingredient
-  #   @recipe = set_recipe
-  #   @food = Food.find(params[:recipe][:food_id])
-  #   @recipe.food << @food
-  #   @recipe.quantity = params[:recipe][:quantity] # Set the quantity
-  #   @recipe.save # Save the recipe with the quantity
-  # end
-
-  # def add_ingredient
-  # @recipe = set_recipe
-  #  @food = Food.find(params[:recipe][:food_id])
-  #  @recipe.food << @food
-  # end
 
   def add_ingredient
     @recipe = Recipe.find(params[:recipe_id])
@@ -101,17 +111,6 @@ class RecipesController < ApplicationController
       render 'add_ingredient'
     end
   end
-
-  # def add_ingredient
-  #   @recipe = set_recipe
-  #   @food = Food.find(params[:food_id])
-  #   @recipe.food << @food
-  # end
-
-  # def new_ingredient
-  #   @recipe = set_recipe
-  #   @food = Food.new
-  # end
 
   def new_ingredient
     @recipe = set_recipe
