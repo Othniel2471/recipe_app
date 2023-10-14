@@ -1,0 +1,61 @@
+<div class='container vertical_flex '>
+<p style="color: green"><%= notice %></p>
+
+<h1>Shoping List</h1>
+
+<div id="recipes">
+   <div>
+    <p>
+        <strong>Amount of food items to buy:</strong>
+        <%= @recipe_shoping_list_data[:food_count] %>
+    </p>
+    <p>
+        <strong>Total value of food needed:</strong>
+        <%= @recipe_shoping_list_data[:total_price] %>
+    </p>
+   </div>
+   <table class="grid-table" id="foods">
+        <thead>
+            <tr>
+                <th><strong>Food</strong></th>
+                <th><strong>Quantity</strong></th>
+                <th> <strong>Price</strong></th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @recipe_shoping_list_data[:foods_data].each do |food_data| %>
+                <tr>
+                    <td>
+                    <%= link_to food_path(food_data), class: 'link' do %>
+                        <%= food_data[:name] %>
+                        <%end%>
+                    </td>
+
+                    <td>
+                        
+                        <%= food_data[:quantity] %>
+                    </td>
+
+                    <td>
+                    
+                        <%= food_data[:price] %>
+                    </td>
+
+                </tr>
+
+            <% end %>
+  </tbody>
+  </table>
+</div>
+<br>
+
+<% if user_signed_in? %>
+<%= link_to "New Recipe", new_recipe_path, class: 'submit-btn' %>
+<%else%>
+<%= link_to "New Recipe", new_user_session_path, class: 'submit-btn' %>
+<%end%> <br>
+
+<% unless user_signed_in? %>
+    <%= button_to "Sign in", new_user_session_path, method: :get, class: "danger-btn" %>
+<%end%>
+</div>

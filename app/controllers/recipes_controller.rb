@@ -6,7 +6,6 @@ class RecipesController < ApplicationController
     @public_page = true
     @recipes = Recipe.includes(%i[foods food_recipes user]).where(public: true).order('created_at DESC')
     @public_recipe_data_list = []
-    p @recipes
     @recipes.each do |recipe|
       public_recipe_data = {}
       public_recipe_data[:user] = recipe.user.name
@@ -16,9 +15,25 @@ class RecipesController < ApplicationController
       public_recipe_data[:total_price] = recipe.food_recipes.reduce(0) do |total_price, food_recipe|
         total_price + (food_recipe.food.price * food_recipe.quantity)
       end
-      p('recipe name', public_recipe_data[:recipe_name])
-      p('recipe name', public_recipe_data[:recipe].name)
       @public_recipe_data_list << public_recipe_data
+    end
+  end
+
+  def shoping_list
+    @recipe = Recipe.includes(:foods, :food_recipes, :user).find(params[:id])
+    @recipe_shoping_list_data = {}
+    @recipe_shoping_list_data[:recipe_name] = @recipe.name
+    @recipe_shoping_list_data[:food_count] = @recipe.foods.length
+    p @recipe.food_recipes
+    @recipe_shoping_list_data[:foods_data] = @recipe.food_recipes.map do |food_recipe|
+      {
+        name: food_recipe.food.name,
+        quantity: food_recipe.quantity,
+        price: food_recipe.food.price * food_recipe.quantity
+      }
+    end
+    @recipe_shoping_list_data[:total_price] = @recipe.food_recipes.reduce(0) do |total_price, food_recipe|
+      total_price + (food_recipe.food.price * food_recipe.quantity)
     end
   end
 
